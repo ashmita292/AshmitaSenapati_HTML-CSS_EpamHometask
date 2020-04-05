@@ -1,0 +1,80 @@
+.login_form{
+	max-width: 20%;
+	width:200px
+	height: 100px;
+	margin-left:550px;
+	padding: 50px;
+	box-shadow: 0 0 12px 5px rgba(0,80,150,0.8);
+	display: inline block;
+	font-size:20;
+	text-align:center;
+	border-radius: 10px;
+	
+	
+}
+#email{
+	width:250px;
+	margin-left:10px;
+	padding-left:5px;
+	height:20px;
+	color: grey;
+}
+#password{
+	width:250px;
+	margin-left:10px;
+	padding-left:5px;
+	height:20px;
+	color: grey;
+}
+#sign-in{
+	width: 260px;
+	margin-left:8px;
+	 
+}
+#line{
+	color:grey;
+}
+#icon{
+	width:300px;
+	height:27px;
+	padding-top:7px;
+	background-color:rgb(0, 90, 186);
+	border-radius:10px;
+	color:white;
+	font-weight:bold;
+	font-size:20px;
+	
+}
+#g{
+	width:300px;
+	height:27px;
+	padding-top:4px;
+	background-color:rgba(200,0,0,0.9);
+	border-radius:10px;
+	color:white;
+	font-weight:bold;
+	font-size:20px;
+	
+}
+#epam_login{
+	
+	width:300px;
+	height:27px;
+	padding-top:4px;
+	background-color:rgba(120,200,55,0.9);
+	border-radius:10px;
+	color:white;
+	font-weight:bold;
+	font-size:20px;
+	
+}
+
+form i{
+	position: absolute;
+	font-size:25px;
+	color:grey;
+	margin: 15px 0 0 -45px;
+}
+i.fa-lock{
+	margin-top:35px;
+}
