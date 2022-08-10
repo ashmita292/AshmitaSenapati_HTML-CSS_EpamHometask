@@ -13,9 +13,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo building java
-      - cd Documents
-      - cd "AUDIT CLOUD"
-      - cd AuditAuthentication
       - mvn clean package -Ddockerfile.skip
       - echo Building the Docker image...
       - docker build --tag $IMAGE_URI .
