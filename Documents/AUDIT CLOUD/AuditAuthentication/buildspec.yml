@@ -16,7 +16,8 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - cd Documents/"AUDIT CLOUD"/AuditAuthentication
-      - mvn clean package "-DskipTests=true"
+      - mvn compile
+      - mvn package
       - echo Building the docker image
       - docker build -t audit-authentication .
       - docker tag audit-authentication 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
