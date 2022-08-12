@@ -14,11 +14,11 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - pwd
       - echo Building the Docker image...
-      - mvn -f Documents/"AUDIT CLOUD"/AuditAuthentication/pom.xml clean install -DskipTests=true
+      - cd Documents/"AUDIT CLOUD"/AuditAuthentication
+      - mvn clean package -DskipTests=true
       - echo Building the docker image
-      - docker build -f Documents/"AUDIT CLOUD"/AuditAuthentication/Dockerfile -t audit-authentication .
+      - docker build -t audit-authentication .
       - docker tag audit-authentication 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
   post_build:
     commands:
