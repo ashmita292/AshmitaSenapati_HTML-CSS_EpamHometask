@@ -3,8 +3,10 @@
 #
 FROM maven:3.8.5-jdk-11-slim AS build
 WORKDIR /home/app
-COPY "/Documents/AUDIT CLOUD/AuditAuthentication/src" src
-COPY "/Documents/AUDIT CLOUD/AuditAuthentication/pom.xml" pom.xml
+ARG path1= "/Documents/AUDIT CLOUD/AuditAuthentication/src"
+ARG path2= "/Documents/AUDIT CLOUD/AuditAuthentication/pom.xml"
+COPY ${path1} src
+COPY ${path2} pom.xml
 RUN mvn -f pom.xml clean package
 
 #
