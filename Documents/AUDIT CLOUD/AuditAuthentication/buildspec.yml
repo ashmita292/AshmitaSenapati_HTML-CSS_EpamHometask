@@ -15,8 +15,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - cd Documents/"AUDIT CLOUD"/AuditAuthentication
-      - echo ffffffff $(pwd)
+      - cd "Documents/AUDIT CLOUD/AuditAuthentication"
+      - echo ffffffff $(pwd) $(ls)
       - mvn clean package -DskipTests=true
       - echo Building the docker image
       - docker build -t audit-authentication .
