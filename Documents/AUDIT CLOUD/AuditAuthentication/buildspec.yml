@@ -14,6 +14,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
+      - pwd
       - echo Building the Docker image...
       - mvn -f Documents/"AUDIT CLOUD"/AuditAuthentication/pom.xml clean install -DskipTests=true
       - echo Building the docker image
