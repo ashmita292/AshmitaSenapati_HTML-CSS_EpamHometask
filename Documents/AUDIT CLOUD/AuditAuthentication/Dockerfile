@@ -1,4 +1,16 @@
+#
+# Build stage
+#
+FROM maven:3.8.5-jdk-11-slim AS build
+WORKDIR /home/app
+COPY "/Documents/AUDIT CLOUD/AuditAuthentication/src" src
+COPY "/Documents/AUDIT CLOUD/AuditAuthentication/pom.xml" pom.xml
+RUN mvn -f pom.xml clean package
+
+#
+# Package stage
+#
 FROM openjdk:11
+COPY --from=build /home/app/target/AuditAuthentication-0.0.1-SNAPSHOT.jar audit-authentication.jar
 EXPOSE 9400
-ADD target/Audit-Authentication.jar audit-authentication.jar
-ENTRYPOINT ["java", "-jar", "audit-authentication.jar"]
+ENTRYPOINT ["java","-jar","audit-authentication.jar"]
