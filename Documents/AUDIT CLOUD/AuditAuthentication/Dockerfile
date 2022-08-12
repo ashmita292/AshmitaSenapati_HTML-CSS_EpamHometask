@@ -7,7 +7,7 @@ ARG path1= "/Documents/AUDIT CLOUD/AuditAuthentication/src"
 ARG path2= "/Documents/AUDIT CLOUD/AuditAuthentication/pom.xml"
 COPY ${path1} src
 COPY ${path2} pom.xml
-RUN mvn -f pom.xml clean package
+RUN mvn clean package
 
 #
 # Package stage
