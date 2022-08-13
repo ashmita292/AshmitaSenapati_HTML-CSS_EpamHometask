@@ -1,0 +1,34 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      docker: 20
+      java: corretto17
+  pre_build:
+    commands:
+        - echo Logging in to Amazon ECR...
+        - aws --version
+        - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 565108160771.dkr.ecr.us-east-1.amazonaws.com
+        - REPOSITORY_URI=565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditChecklist)
+      - echo Building the Docker image...
+      - mvn -f Documents/"AUDIT CLOUD"/AuditChecklist/pom.xml clean install -DskipTests=true
+      - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditChecklist/target)
+      - echo Building the docker image
+      - docker build -t audit-checklist --file Documents/"AUDIT CLOUD"/AuditChecklist/Dockerfile .
+      - docker tag audit-checklist 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-checklist
+  post_build:
+    commands:
+        - echo Build completed on `date`
+        - echo Pushing the Docker images...
+        - docker push 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-checklist
+        - echo Writing image definitions file...
+        - printf '[{"name":"audit-checklist","imageUri":"%s"}]' 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-checklist > imagedefinitions.json
+
+artifacts:
+  files:
+  - imagedefinitions.json
