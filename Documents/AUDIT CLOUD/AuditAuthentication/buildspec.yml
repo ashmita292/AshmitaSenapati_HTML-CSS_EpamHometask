@@ -27,8 +27,8 @@ phases:
         - echo Pushing the Docker images...
         - docker push 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
         - echo Writing image definitions file...
-        - printf '[{"name":"audit-authentication","imageUri":"%s"}]' 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication > imagedefinitions.json
-        - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditAuthentication)
+        - printf '[{"name":"audit-authentication","imageUri":"%s"}]' 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication > Documents/"AUDIT CLOUD"/AuditAuthentication/imagedefinitions.json
+        - echo fffff $(pwd)
 
 artifacts:
   files: Documents/"AUDIT CLOUD"/AuditAuthentication/imagedefinitions.json
