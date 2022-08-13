@@ -31,4 +31,5 @@ phases:
         - echo fffff $(pwd)
 
 artifacts:
-  files: Documents/"AUDIT CLOUD"/AuditAuthentication/imagedefinitions.json
+  files: 
+  - Documents/"AUDIT CLOUD"/AuditAuthentication/imagedefinitions.json
