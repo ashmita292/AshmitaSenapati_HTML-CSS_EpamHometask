@@ -19,7 +19,7 @@ phases:
       - mvn -f Documents/"AUDIT CLOUD"/AuditAuthentication/pom.xml clean install -DskipTests=true
       - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditAuthentication/target)
       - echo Building the docker image
-      - docker build -f /Documents/"AUDIT CLOUD"/AuditAuthentication/Dockerfile -t audit-authentication .
+      - docker build -t audit-authentication --file Documents/"AUDIT CLOUD"/AuditAuthentication/Dockerfile .
       - docker tag audit-authentication 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
   post_build:
     commands:
