@@ -2,28 +2,34 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions: 
-      java: openjdk11
+    runtime-versions:
+      docker: 20
+      java: corretto17
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
-      - IMAGE_URI=${REPOSITORY_URI}:LATEST
+        - echo Logging in to Amazon ECR...
+        - aws --version
+        - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 565108160771.dkr.ecr.us-east-1.amazonaws.com
+        - REPOSITORY_URI=565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication
   build:
     commands:
       - echo Build started on `date`
-      - echo building java
-      - cd AuditAuthentication
-      - mvn clean package -Ddockerfile.skip
+      - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditAuthentication)
       - echo Building the Docker image...
-      - docker build --tag $IMAGE_URI .
+      - mvn -f Documents/"AUDIT CLOUD"/AuditAuthentication/pom.xml clean install -DskipTests=true
+      - echo fffff $(ls Documents/"AUDIT CLOUD"/AuditAuthentication/target)
+      - echo Building the docker image
+      - docker build -t audit-authentication --file Documents/"AUDIT CLOUD"/AuditAuthentication/Dockerfile .
+      - docker tag audit-authentication 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
-      - docker push $IMAGE_URI
-      - echo Writing image definitions file...
-      - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $IMAGE_URI > imagedefinitions.json
+        - echo Build completed on `date`
+        - echo Pushing the Docker images...
+        - docker push 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication
+        - echo Writing image definitions file...
+        - printf '[{"name":"audit-authentication","imageUri":"%s"}]' 565108160771.dkr.ecr.us-east-1.amazonaws.com/audit-authentication:audit-authentication > imagedefinitions.json
+        - echo fffff $(ls)
+
 artifacts:
-    files: 
-      - imagedefinitions.json
+  files:
+  - imagedefinitions.json
