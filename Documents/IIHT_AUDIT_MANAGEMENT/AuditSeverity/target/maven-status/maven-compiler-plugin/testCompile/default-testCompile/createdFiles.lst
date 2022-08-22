@@ -1,0 +1,7 @@
+com\cts\AuditSeverity\ProjectManagerTest.class
+com\cts\AuditSeverity\swaggerconfig\SpringFoxConfigTest.class
+com\cts\AuditSeverity\service\TokenServiceImplTest.class
+com\cts\AuditSeverity\repository\RequestRepositoryTest.class
+com\cts\AuditSeverity\AuditSeverityApplicationTest.class
+com\cts\AuditSeverity\service\AuditRequestResponseTest.class
+com\cts\AuditSeverity\SeverityControllerTest.class
